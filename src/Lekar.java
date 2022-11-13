@@ -7,7 +7,7 @@ public abstract class Lekar {
 	private int brojPacijenata;
 	private int maxPacijenata;
 	
-	public Lekar(String ime,String prezime,int brojPacijenata) {
+	public Lekar(String ime,String prezime,int maxPacijenata) {
 		this.ime=ime;
 		this.prezime=prezime;
 		this.pacijenti=new Pacijent[maxPacijenata];
@@ -35,11 +35,11 @@ public abstract class Lekar {
 	}
 	
 	public boolean prihvati(Pacijent p) {
-		if(p.getBrojGodina()>18) {return false;}
+		//if(p.getBrojGodina()>18) {return false;}
 		
 		if(getBrojPacijenata()<pacijenti.length) {
 			for(int i=getBrojPacijenata();i<pacijenti.length;i++) {
-				pacijenti[i++]=p;
+				pacijenti[brojPacijenata++]=p;
 				return true;
 			}
 		}

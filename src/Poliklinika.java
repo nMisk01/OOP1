@@ -8,22 +8,19 @@ public class Poliklinika {
 	private Lekar[] lekari;
 	
 	public Poliklinika(String lekariFajl,String pacijentiFajl) throws IOException{
-		ucitajLekare();
-		ucitajPacijente();
-	}
 	
-	public void ucitajLekare() throws IOException{
-		BufferedReader in=new BufferedReader(new FileReader("res/lekari.txt"));
+	
+		BufferedReader inLekari=new BufferedReader(new FileReader("res/lekari.txt"));
 		
 		String ime,prezime,specijalizacija;
-		int brojLekara=Integer.parseInt(in.readLine().trim());
+		int brojLekara=Integer.parseInt(inLekari.readLine().trim());
 		
 		lekari=new Lekar[brojLekara];
 		
 		for(int i=0;i<lekari.length;i++) {
-			ime=in.readLine().trim();
-			prezime=in.readLine().trim();
-			specijalizacija=in.readLine().trim();
+			ime=inLekari.readLine().trim();
+			prezime=inLekari.readLine().trim();
+			specijalizacija=inLekari.readLine().trim();
 			if(specijalizacija.equals("pedijatar")) {
 				lekari[i]=new Pedijatar(ime,prezime);
 			}
@@ -33,30 +30,29 @@ public class Poliklinika {
 			
 		
 		}
-		in.close();
-	}
+		inLekari.close();
+	
 
-	public void ucitajPacijente() throws IOException{
-		BufferedReader in=new BufferedReader(new FileReader("res/pacijenti.txt"));
+		BufferedReader inPacijenti=new BufferedReader(new FileReader("res/pacijenti.txt"));
 		
-		String ime,prezime;
+		String imeP,prezimeP;
 		int brojPacijenata=0;
 		int godine;
 		
-		brojPacijenata=Integer.parseInt(in.readLine().trim()); 
+		brojPacijenata=Integer.parseInt(inPacijenti.readLine().trim()); 
 		
 		for(int i=0;i<brojPacijenata;i++) {
-			ime=in.readLine().trim();
-			prezime=in.readLine().trim();
-			godine=Integer.parseInt(in.readLine().trim());
+			imeP=inPacijenti.readLine().trim();
+			prezimeP=inPacijenti.readLine().trim();
+			godine=Integer.parseInt(inPacijenti.readLine().trim());
 			
-			Pacijent pacijent=new Pacijent(ime,prezime,godine);
+			Pacijent pacijent=new Pacijent(imeP,prezimeP,godine);
 			
 			Random rand=new Random();
 			
 			lekari[rand.nextInt(lekari.length)].prihvati(pacijent);
 		}
-		in.close();
+		inPacijenti.close();
 	}
 	
 	public Pulmolog najmanjaPlata() {

@@ -19,4 +19,10 @@ public class Pedijatar extends Lekar {
 		return ukupno;
 	}
 	
+	@Override
+	public boolean prihvati(Pacijent p) {
+		if(p.getBrojGodina()>18) {return false;}
+		
+		return super.prihvati(p);
+	}
 }
